@@ -5,6 +5,7 @@ class ChallengesController < ApplicationController
   # GET /challenges.json
   def index
     @challenges = Challenge.all
+    @challenge_categories = @challenges.group_by { |c| c.category }
   end
 
   # GET /challenges/1
@@ -28,7 +29,7 @@ class ChallengesController < ApplicationController
 
     respond_to do |format|
       if @challenge.save
-        format.html { redirect_to @challenge, notice: 'Challenge was successfully created.' }
+        format.html { redirect_to challenges_path, notice: 'Challenge was successfully created.' }
         format.json { render :show, status: :created, location: @challenge }
       else
         format.html { render :new }
