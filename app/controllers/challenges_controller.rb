@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy, :verify_answer]
+  before_action :set_team, only: [:verify_answer]
   before_action :authenticate_team!
 
   # GET /challenges
@@ -70,9 +71,8 @@ class ChallengesController < ApplicationController
       @challenge_answered_correctly = true
       solution_record = Solution.new(team_id: params[:team_id], challenge_id: @challenge.id)
       solution_record.save
-      team = Team.find(params[:team_id])
-      team.current_score += @challenge.point
-      team.save
+      @team.current_score += @challenge.point
+      @team.save
     end
   end
 
@@ -80,6 +80,10 @@ class ChallengesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge
       @challenge = Challenge.find(params[:id])
+    end
+
+    def set_team
+      @team = Team.find(params[:team_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
