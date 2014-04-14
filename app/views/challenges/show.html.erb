@@ -19,6 +19,7 @@
 </p>
 
 <%= form_tag verify_answer_challenge_path(@challenge), remote: true do %>
+  <%= hidden_field_tag 'team_id', current_team.id %>
   <%= text_field_tag 'answer' %>
   <%= submit_tag 'Submit' %>
 <% end %>
