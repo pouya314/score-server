@@ -1,6 +1,6 @@
 <% @challenge_categories.keys.sort.each do |category| %>
   <h2><%= category %></h2>
   <% for challenge in @challenge_categories[category] %>
-    <p><%= link_to challenge.name, challenge %></p>
+    <p>- <%= link_to challenge.name, challenge %></p>
   <% end %>
 <% end %>
