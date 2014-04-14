@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+
   devise_for :teams
-  resources :challenges#, only: [:index, :show]
+
+  resources :challenges do#, only: [:index, :show]
+    member do
+      post 'verify_answer'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

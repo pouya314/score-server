@@ -63,6 +63,10 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def verify_answer
+    # TODO: verify answer & only return js
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge
