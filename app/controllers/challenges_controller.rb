@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :verify_answer]
   before_action :authenticate_team!
 
   # GET /challenges
@@ -64,7 +64,16 @@ class ChallengesController < ApplicationController
   end
 
   def verify_answer
-    # TODO: verify answer & only return js
+    @challenge_answered_correctly = false
+    if params[:answer] == @challenge.solution
+      # answer submitted was correct!
+      @challenge_answered_correctly = true
+      solution_record = Solution.new(team_id: params[:team_id], challenge_id: @challenge.id)
+      solution_record.save
+      team = Team.find(params[:team_id])
+      team.current_score += @challenge.point
+      team.save
+    end
   end
 
   private
