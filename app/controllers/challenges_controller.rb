@@ -8,6 +8,12 @@ class ChallengesController < ApplicationController
   def index
     @challenges = Challenge.all
     @challenge_categories = @challenges.group_by { |c| c.category }
+    
+    @challenge_ids_solved_by_team = []
+    solutions_by_team = Solution.select(:challenge_id).where(team_id: current_team.id)
+    solutions_by_team.each do |solution|
+      @challenge_ids_solved_by_team << solution.challenge_id
+    end
   end
 
   # GET /challenges/1
@@ -69,11 +75,11 @@ class ChallengesController < ApplicationController
   def verify_answer
     @challenge_answered_correctly = false
     if params[:answer] == @challenge.solution
-      @challenge_answered_correctly = true
       solution_record = Solution.new(team_id: params[:team_id], challenge_id: @challenge.id)
       solution_record.save
       @team.current_score += @challenge.point
       @team.save
+      @challenge_answered_correctly = true
     end
   end
 
