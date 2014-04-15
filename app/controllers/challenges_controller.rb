@@ -64,10 +64,11 @@ class ChallengesController < ApplicationController
     end
   end
 
+  # Ajax call that verifies answer submitted 
+  # and returns appropriate response (in JS format)
   def verify_answer
     @challenge_answered_correctly = false
     if params[:answer] == @challenge.solution
-      # answer submitted was correct!
       @challenge_answered_correctly = true
       solution_record = Solution.new(team_id: params[:team_id], challenge_id: @challenge.id)
       solution_record.save

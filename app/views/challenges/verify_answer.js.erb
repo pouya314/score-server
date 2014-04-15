@@ -1,12 +1,10 @@
 if (<%= @challenge_answered_correctly %>) {
-  $("div#answer_submit").remove();
-  var success_msg = "<p class=\"answer-success\">Correct! You earned " + <%= @challenge.point %> + " points!</p>";
-  $("div#answer_result").html(success_msg);
-  $("div#answer_result").removeClass("hidden");
-  $( "div#team_current_score" ).html("Team's score: " + <%= @team.current_score %>);
+  $( "div#answer_submit" ).remove();
+  $( "div#answer_result" ).html( "<p class=\"answer-success\">Correct! You earned " + <%= @challenge.point %> + " points!</p>" );
+  $( "div#answer_result" ).removeClass( "hidden" );
+  $( "div#team_current_score" ).html( "Team's score: " + <%= @team.current_score %> );
   $( "div#team_current_score" ).effect('highlight', 3000);
 } else {
-  var failure_msg = "<p class=\"answer-fail\">Incorrect answer! Please try again!</p>";
-  $("div#answer_result").html(failure_msg);
-  $("div#answer_result").removeClass("hidden");
+  $( "div#answer_result" ).html( "<p class=\"answer-fail\">Incorrect answer! Please try again!</p>" );
+  $( "div#answer_result" ).removeClass( "hidden" );
 }
