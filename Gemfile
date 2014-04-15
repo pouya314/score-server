@@ -41,3 +41,5 @@ gem 'spring',        group: :development
 gem 'devise'
 
 gem 'jquery-ui-rails'
+
+gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
