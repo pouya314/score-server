@@ -3,6 +3,7 @@ class ChallengesController < ApplicationController
   before_action :set_team, only: [:verify_answer]
   before_action :authenticate_team!
   before_action :ensure_team_does_not_submit_same_answer_twice, only: [:verify_answer]
+  before_action :ensure_team_cannot_access_show_page_of_a_challenge_that_they_have_already_solved, only: [:show]
   
 
   # GET /challenges
@@ -98,6 +99,12 @@ class ChallengesController < ApplicationController
     def ensure_team_does_not_submit_same_answer_twice
       if Solution.where({challenge_id: @challenge.id, team_id: @team.id}).exists?
         render "notallowed"
+      end
+    end
+    
+    def ensure_team_cannot_access_show_page_of_a_challenge_that_they_have_already_solved
+      if Solution.where({challenge_id: @challenge.id, team_id: current_team.id}).exists?
+        redirect_to challenges_url, notice: "You cannot access that challenge, because you have already solved it!"
       end
     end
 
