@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'index/status'
+
+  get 'index/chart'
+
+  get 'index/screen'
+
   devise_for :teams
 
   resources :challenges do#, only: [:index, :show]
