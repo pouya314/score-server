@@ -2,6 +2,8 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy, :verify_answer]
   before_action :set_team, only: [:verify_answer]
   before_action :authenticate_team!
+  before_action :ensure_team_does_not_submit_same_answer_twice, only: [:verify_answer]
+  
 
   # GET /challenges
   # GET /challenges.json
@@ -75,7 +77,7 @@ class ChallengesController < ApplicationController
   def verify_answer
     @challenge_answered_correctly = false
     if params[:answer] == @challenge.solution
-      solution_record = Solution.new(team_id: params[:team_id], challenge_id: @challenge.id)
+      solution_record = Solution.new(team_id: @team.id, challenge_id: @challenge.id)
       solution_record.save
       @team.current_score += @challenge.point
       @team.save
@@ -91,6 +93,12 @@ class ChallengesController < ApplicationController
 
     def set_team
       @team = Team.find(params[:team_id])
+    end
+    
+    def ensure_team_does_not_submit_same_answer_twice
+      if Solution.where({challenge_id: @challenge.id, team_id: @team.id}).exists?
+        render "notallowed"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
