@@ -43,3 +43,6 @@ gem 'devise'
 gem 'jquery-ui-rails'
 
 gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
+
+# gem "highcharts-rails", github: "PerfectlyNormal/highcharts-rails"
+gem "highcharts-rails", "~> 3.0.0"
