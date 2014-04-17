@@ -6,6 +6,8 @@ class Team < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :solutions
+  
+  validates_presence_of :name, :message => " of team can't be blank"
 
   private
     def set_current_score_to_zero
