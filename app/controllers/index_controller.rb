@@ -1,11 +1,9 @@
 class IndexController < ApplicationController
   def status
+    # Challenge.order(created_at: :asc).select(:id).map {|i| i.id }
   end
 
   def chart
-    # @time = Team.last.created_at.utc.to_i*1000
-    # logger.debug "time passed to template => #{@time}"
-    
     @teams = Team.all
   end
 

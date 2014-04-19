@@ -1,2 +1,9 @@
-<h1>Index#screen</h1>
-<p>Find me in app/views/index/screen.html.erb</p>
+Screenshot page...
+
+<%= link_to "next", index_chart_url, class: "hidden link-to-next-page" %>
+
+<script type="text/javascript" charset="utf-8">
+  window.setTimeout(function(){
+    window.location.href = $( ".link-to-next-page" ).attr("href");
+  },3000);
+</script>

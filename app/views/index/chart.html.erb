@@ -36,10 +36,6 @@
                   borderWidth: 0
               },
               series: [
-                // {
-                //   name: 'Tokyo',
-                //   data: [[<%= @time %>, 250], [Date.UTC(2014, 03, 17, 09, 40, 00), 500]]
-                // },
                 <% @teams.each do |team|  %>
                   {
                     name: '<%= team.name %>',
@@ -56,3 +52,10 @@
 </script>
 
 <div id="chart"></div>
+<%= link_to "next", index_status_url, class: "hidden link-to-next-page" %>
+
+<script type="text/javascript" charset="utf-8">
+  window.setTimeout(function(){
+    window.location.href = $( ".link-to-next-page" ).attr("href");
+  },3000);
+</script>
