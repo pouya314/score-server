@@ -11,4 +11,8 @@ class IndexController < ApplicationController
 
   def screen
   end
+  
+  def ranking
+    @ranking_list = Team.order(current_score: :desc)
+  end
 end
