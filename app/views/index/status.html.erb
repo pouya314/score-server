@@ -1,9 +1,43 @@
-Status page..
+<table class="table table-striped text-center">
+  <!--   table head   -->
+  <tr class="lead">
+    <td>
+      <strong>Team Name</strong>
+    </td>
+    <% @ch_names.each do |ch_name| %>
+      <td>
+        <strong><%= ch_name %></strong>
+      </td>
+    <% end %>
+  </tr>
+
+  <!--  table body  -->
+  <% @tabledata.each do |team_name, score_data| %>
+    <tr>
+      <td>
+        <%= team_name %>
+      </td>
+      <% for score in score_data %>
+        <td>
+          <% if score == 1 %>
+            <%= image_tag("green.jpg", height: '32', width: '32') %>
+          <% else %>
+            <%= image_tag("red.png", height: '32', width: '32') %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+
+</table>
+
+<%= @ch_names %><br><br>
+<%= @tabledata %><br>
 
 <%= link_to "next", index_ranking_url, class: "hidden link-to-next-page" %>
 
 <script type="text/javascript" charset="utf-8">
-  window.setTimeout(function(){
-    window.location.href = $( ".link-to-next-page" ).attr("href");
-  },3000);
+  // window.setTimeout(function(){
+  //   window.location.href = $( ".link-to-next-page" ).attr("href");
+  // },3000);
 </script>
