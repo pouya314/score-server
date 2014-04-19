@@ -11,47 +11,46 @@
                   text: 'Progress of teams',
                   x: -20 //center
               },
-              // subtitle: {
-              //     text: 'Source: WorldClimate.com',
-              //     x: -20
-              // },
               xAxis: {
                   type: 'datetime',
                   dateTimeLabelFormats: {
-                      day: '%H:%M'
+                      day: '%H:%M:%S'
                   },
                   title: {
                       text: 'Time'
                   },
-                  min: Date.UTC(2014, 03, 17, 07, 00, 00),
-                  max: Date.UTC(2014, 03, 17, 10, 00, 00),
-                  // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                  min: Date.UTC(2014, 03, 19, 06, 09, 00),
+                  max: Date.UTC(2014, 03, 19, 06, 14, 00),
               },
               yAxis: {
                   title: {
                       text: 'Score'
                   },
                   min: 0,
-                  max: 1000
-                  // plotLines: [{
-                  //     value: 0,
-                  //     width: 1,
-                  //     color: '#808080'
-                  // }]
+                  max: 1200
               },
-              // tooltip: {
-              //     valueSuffix: '°C'
-              // },
               legend: {
                   layout: 'vertical',
                   align: 'right',
                   verticalAlign: 'middle',
                   borderWidth: 0
               },
-              series: [{
-                  name: 'Tokyo',
-                  data: [[<%= @time %>, 250], [Date.UTC(2014, 03, 17, 09, 40, 00), 500]]
-              }]
+              series: [
+                // {
+                //   name: 'Tokyo',
+                //   data: [[<%= @time %>, 250], [Date.UTC(2014, 03, 17, 09, 40, 00), 500]]
+                // },
+                <% @teams.each do |team|  %>
+                  {
+                    name: '<%= team.name %>',
+                    data: [
+                      <% team.solutions.order(created_at: :asc).each do |solution| %>
+                        [<%= solution.created_at.utc.to_i*1000 %>,<%= solution.team_score_so_far %>],
+                      <% end %>
+                    ]
+                  },
+                <% end %>
+              ]
           });
       });
 </script>

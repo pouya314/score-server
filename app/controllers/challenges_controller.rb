@@ -79,6 +79,7 @@ class ChallengesController < ApplicationController
     @challenge_answered_correctly = false
     if params[:answer] == @challenge.solution
       solution_record = Solution.new(team_id: @team.id, challenge_id: @challenge.id)
+      solution_record.team_score_so_far = @team.current_score + @challenge.point
       solution_record.save
       @team.current_score += @challenge.point
       @team.save
