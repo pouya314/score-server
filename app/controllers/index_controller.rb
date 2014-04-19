@@ -1,4 +1,6 @@
 class IndexController < ApplicationController
+  layout 'publictem'
+  
   def status
     # Challenge.order(created_at: :asc).select(:id).map {|i| i.id }
   end
@@ -9,7 +11,7 @@ class IndexController < ApplicationController
 
   def screen
   end
-  
+
   def ranking
     @ranking_list = Team.order(current_score: :desc)
   end
