@@ -5,7 +5,7 @@
                   timezoneOffset: -8 * 60
               }
           });
-          
+
           $('#chart').highcharts({
               title: {
                   text: 'Progress of teams',
@@ -14,13 +14,13 @@
               xAxis: {
                   type: 'datetime',
                   dateTimeLabelFormats: {
-                      day: '%H:%M:%S'
+                      day: '%H:%M'
                   },
                   title: {
                       text: 'Time'
                   },
-                  min: Date.UTC(2014, 03, 19, 06, 09, 00),
-                  max: Date.UTC(2014, 03, 19, 06, 14, 00),
+                  // min: Date.UTC(2014, 03, 19, 00, 00, 00),
+                  // max: Date.UTC(2014, 03, 21, 00, 00, 00),
               },
               yAxis: {
                   title: {
