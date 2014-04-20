@@ -31,6 +31,7 @@ class IndexController < ApplicationController
 
 
   def screen
+    @screenshot = Screenshot.last
   end
 
 
