@@ -9,30 +9,42 @@
 <body>
 
 <% if notice %>
-  <p class="notice"><%= notice %></p>
+  <p class="alert alert-info"><%= notice %></p>
 <% end %>
 
 <% if alert %>
-  <p class="alert"><%= alert %></p>
+  <p class="alert alert-info"><%= alert %></p>
 <% end %>
 
-<% if team_signed_in? %>
-  Signed in as <%= current_team.email %> |
-  <%= link_to "Edit profile", edit_team_registration_path %> |
-  <%= link_to "Sign out", destroy_team_session_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign up", new_team_registration_path %> or
-  <%= link_to "Sign in", new_team_session_path %>
-<% end %>
 
-<hr>
-<% if controller.controller_name == 'challenges' %>
-  <div id="team_current_score">
-     Team's score: <%= current_team.current_score %>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <% if team_signed_in? %>
+      <div class="text-right">
+        Signed in as: <strong>Team <%= current_team.name %></strong> |
+        <span class="btn-group">
+          <%= link_to "Edit profile", edit_team_registration_path, method: :get, class: "btn btn-primary btn-sm" %>
+          <%= link_to "Sign out", destroy_team_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
+        </span>
+      </div>
+    <%# else %>
+      <%#= link_to "Sign up", new_team_registration_path %>
+      <%#= link_to "Sign in", new_team_session_path %>
+    <% end %>
+
+
+    <% if controller.controller_name == 'challenges' %>
+      <div id="team_current_score" class="lead">
+         Team's score: <span class="label label-info"><%= current_team.current_score %></span>
+      </div>
+    <% end %>
+
+    <%= yield %>
   </div>
-<% end %>
+  <div class="col-md-1"></div>
+</div>
 
-<%= yield %>
 
 </body>
 </html>

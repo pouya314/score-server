@@ -1,31 +1,22 @@
-<p>
-  <strong>Category:</strong>
-  <%= @challenge.category %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @challenge.name %>
-</p>
-
-<p>
-  <strong>Point:</strong>
-  <%= @challenge.point %>
-</p>
-
-<p>
-  <strong>Question:</strong>
-  <%= @challenge.question %>
-</p>
-
-<div id="answer_submit">
-  <%= form_tag verify_answer_challenge_path(@challenge), remote: true do %>
-    <%= hidden_field_tag 'team_id', current_team.id %>
-    <%= text_field_tag 'answer' %>
-    <%= submit_tag 'Submit', data: { disable_with: "Please wait..." } %>
-  <% end %>
+<div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><strong><%= @challenge.name %></s> (<%= @challenge.point %> points)</div>
+  <div class="panel-body">
+    <p class="lead">
+      <%= @challenge.question %>
+    </p>
+  </div>
+  
+  <div class="panel-footer">
+    Your Answer:<br />
+    <div id="answer_submit">
+      <%= form_tag verify_answer_challenge_path(@challenge), remote: true do %>
+        <%= hidden_field_tag 'team_id', current_team.id %>
+        <%= text_field_tag 'answer' %>
+        <%= submit_tag 'Submit', data: { disable_with: "Please wait..." } %>
+      <% end %>
+    </div>
+    <div id="answer_result" class="hidden"></div>
+  </div>
 </div>
-<div id="answer_result" class="hidden"></div>
-
-<br>
 <%= link_to '&larr; Go Back'.html_safe, challenges_path %>
