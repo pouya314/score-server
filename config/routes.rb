@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   devise_for :teams
 
-  resources :challenges, only: [:index, :show] do
+  resources :challenges, except: [:new, :create, :edit, :update, :destroy] do
     member do
       post 'verify_answer'
     end

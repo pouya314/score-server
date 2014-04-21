@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_action :set_challenge, only: [:show, :edit, :update, :destroy, :verify_answer]
+  before_action :set_challenge, only: [:show, :verify_answer]
   before_action :set_team, only: [:verify_answer]
   before_action :authenticate_team!
   before_action :ensure_team_does_not_submit_same_answer_twice, only: [:verify_answer]
