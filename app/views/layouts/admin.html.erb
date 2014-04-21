@@ -22,7 +22,7 @@
     <hr>
     <%= link_to "List of Challenges", private_challenges_path %> | 
     <%= link_to "create new challenge", new_private_challenge_path %> | 
-    <%= link_to "Attempts" %>
+    <%= link_to "Attempts", private_attempts_index_path %>
     <hr>
 <% else %>
   <%= link_to "Sign in", new_admin_session_path %>

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   # ########################
 
   devise_for :teams
-  
   devise_for :admins, skip: [:registrations], controllers: { sessions: "admins/sessions" }
 
   resources :challenges, except: [:new, :create, :edit, :update, :destroy] do
@@ -16,10 +15,14 @@ Rails.application.routes.draw do
       post 'verify_answer'
     end
   end
+
   
+  # namespaced routes for admin access only.
   namespace :private do
     resources :challenges
+    get 'attempts/index'
   end
+
 
   # ROOT of the App
   root 'challenges#index'
