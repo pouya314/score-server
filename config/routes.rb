@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'index/status'
   get 'index/chart'
   get 'index/screen'
-  get 'index/ranking'
+  # get 'index/ranking'
   # ########################
 
   devise_for :teams
