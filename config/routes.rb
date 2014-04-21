@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # ########################
 
   devise_for :teams
+  
+  devise_for :admins, skip: [:registrations], controllers: { sessions: "admins/sessions" }
 
   resources :challenges, except: [:new, :create, :edit, :update, :destroy] do
     member do
