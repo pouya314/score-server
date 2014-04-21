@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require highcharts
+//= require highcharts/themes/gray
 //= require_tree .
