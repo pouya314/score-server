@@ -16,6 +16,10 @@ Rails.application.routes.draw do
       post 'verify_answer'
     end
   end
+  
+  namespace :private do
+    resources :challenges
+  end
 
   # ROOT of the App
   root 'challenges#index'
