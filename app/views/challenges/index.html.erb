@@ -2,7 +2,7 @@
   <!-- Default panel contents -->
   <div class="panel-heading">Your dashboard</div>
   <div class="panel-body">
-    <p class="text-info">Note: Solved challenges will be marked as disabled.</p>
+    <p class="text-info">Note: <span class="text-success">Solved</span> and <span class="text-warning">Locked</span> challenges will be disabled.</p>
   </div>
 
   <!-- Table -->
@@ -19,9 +19,9 @@
           <% for challenge in @challenge_categories[category] %>
 
             <% if @challenge_ids_solved_by_team.include? challenge.id %>
-              <%= link_to "#{challenge.name} (solved)", challenge, class: "btn btn-primary", disabled: "disabled" %>
+              <%= link_to "#{challenge.name} (solved)", challenge, class: "btn btn-success", disabled: "disabled" %>
             <% elsif challenge.open == false %>
-              <%= link_to "#{challenge.name} (locked)", challenge, class: "btn btn-primary", disabled: "disabled" %>
+              <%= link_to "#{challenge.name} (locked)", challenge, class: "btn btn-warning", disabled: "disabled" %>
             <% else %>
               <%= link_to challenge.name, challenge, class: "btn btn-primary" %>
             <% end %>
