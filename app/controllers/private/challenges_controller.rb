@@ -67,6 +67,6 @@ class Private::ChallengesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def challenge_params
-      params.require(:challenge).permit(:category, :name, :point, :question, :solution)
+      params.require(:challenge).permit(:category, :name, :point, :question, :solution, :open)
     end
 end
