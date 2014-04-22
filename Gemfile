@@ -48,5 +48,5 @@ gem 'bootstrap-sass', github: 'twbs/bootstrap-sass'
 gem "highcharts-rails", "~> 3.0.0"
 
 # for Heroku
-gem 'rails_12factor', group: :production
-ruby "2.1.1"
+# gem 'rails_12factor', group: :production
+# ruby "2.1.1"
