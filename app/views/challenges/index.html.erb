@@ -11,24 +11,27 @@
       <th><h3>Category</h3></th>
       <th><h3>Challenges</h3></th>
     </tr>
-    
+
     <% @challenge_categories.keys.sort.each do |category| %>
       <tr>
         <td><%= category %></td>
         <td>
           <% for challenge in @challenge_categories[category] %>
+
             <% if @challenge_ids_solved_by_team.include? challenge.id %>
-              <%= link_to challenge.name, challenge, class: "btn btn-primary", disabled: "disabled" %>
+              <%= link_to "#{challenge.name} (solved)", challenge, class: "btn btn-primary", disabled: "disabled" %>
+            <% elsif challenge.open == false %>
+              <%= link_to "#{challenge.name} (locked)", challenge, class: "btn btn-primary", disabled: "disabled" %>
             <% else %>
               <%= link_to challenge.name, challenge, class: "btn btn-primary" %>
             <% end %>
+
           <% end %>
         </td>
       </tr>
     <% end %>
-    
+
   </table>
-  
+
   <div class="panel-footer">F-Secure (Turn on #freedome)</div>
 </div>
-
