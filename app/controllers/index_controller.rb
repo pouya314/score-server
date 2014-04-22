@@ -31,6 +31,7 @@ class IndexController < ApplicationController
 
 
   def screen
+    # Rails.root.join('app', 'assets', 'images', 'logo.png')
     @screenshot = Screenshot.last
   end
 
