@@ -31,8 +31,13 @@ class IndexController < ApplicationController
 
 
   def screen
-    # Rails.root.join('app', 'assets', 'images', 'logo.png')
-    @screenshot = Screenshot.last
+    screenshot = Screenshot.order(created_at: :asc).first
+    if screenshot.nil?
+      @photo_name = ""
+    else
+      @photo_name = screenshot.photo
+      screenshot.delete
+    end
   end
 
 
