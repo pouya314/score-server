@@ -7,7 +7,7 @@ class Private::ChallengesController < ApplicationController
   # GET /challenges
   # GET /challenges.json
   def index
-    @challenges = Challenge.all
+    @challenges = Challenge.order(created_at: :desc)
   end
 
   # GET /challenges/1

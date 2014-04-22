@@ -23,5 +23,10 @@
   <%= @challenge.solution %>
 </p>
 
+<p>
+  <strong>Open?</strong>
+  <%= @challenge.open %>
+</p>
+
 <%= link_to 'Edit', edit_private_challenge_path(@challenge) %> |
 <%= link_to 'Back', private_challenges_path %>
