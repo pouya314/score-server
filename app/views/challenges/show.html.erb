@@ -3,7 +3,7 @@
   <div class="panel-heading"><strong><%= @challenge.name %></s> (<%= @challenge.point %> points)</div>
   <div class="panel-body">
     <p class="lead">
-      <%= @challenge.question %>
+      <%= @challenge.question.html_safe %>
     </p>
   </div>
   
